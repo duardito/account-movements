@@ -7,7 +7,11 @@ import com.revolut.repository.AccountRepository;
 
 public class GetAccount implements GetAccountService {
 
-    private AccountRepository accountRepository = new AccountRepository();
+    private final AccountRepository accountRepository;
+
+    public GetAccount(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
     @Override
     public AccountResponse get(AccountFrom accountFrom) {
@@ -15,4 +19,5 @@ public class GetAccount implements GetAccountService {
         final Account account = accountRepository.getBy(accountFrom.getId());
         return new AccountResponse(account.getId(), account.getAmount());
     }
+
 }

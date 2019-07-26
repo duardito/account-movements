@@ -1,5 +1,6 @@
 package com.revolut;
 
+import com.revolut.exceptions.InvalidAmountException;
 import com.revolut.service.GetAccount;
 import com.revolut.service.GetAccountService;
 import com.revolut.service.MoveMoney;
@@ -35,6 +36,14 @@ public class MovementsTest {
         Assert.assertEquals(idTo, moveResponse.getTo().getId());
     }
 
+    @Test(expected = InvalidAmountException.class)
+    public void should_not_move_money_between_accounts_not_enough_amount() {
 
+        String idFrom = "asdfr124-323-ddf33";
+        Account from = new Account(idFrom, new BigDecimal(1200));
+        String idTo = "atdd2124-6ht-vfde4";
+        Account to = new Account(idTo, new BigDecimal(0));
+        moveMoneyService.moveMoney(from, to, new BigDecimal(5200));
+    }
 
 }

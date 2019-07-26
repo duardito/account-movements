@@ -1,5 +1,7 @@
 package com.revolut;
 
+import com.revolut.repository.AccountRepository;
+import com.revolut.repository.AccountRepositoryInMemory;
 import com.revolut.service.GetAccount;
 import com.revolut.service.GetAccountService;
 import org.junit.Assert;
@@ -14,12 +16,14 @@ public class AccountsTest {
 
     @Before
     public void setup() {
-        getAccountService = new GetAccount();
+        getAccountService = new GetAccount(new AccountRepositoryInMemory());
     }
 
     @Test
     public void should_get_an_account() {
+
         String id = "asdfr124-323-ddf33";
+
         AccountFrom account = new AccountFrom(id);
         AccountResponse accountResponse = getAccountService.get(account);
         Assert.assertEquals(id, accountResponse.getId());

@@ -42,9 +42,10 @@ public class AccountRepositoryInMemory implements AccountRepository{
     public Account update(Account from, Account to) {
 
         final List<Account> accountToUpdate = new ArrayList<>(Arrays.asList(from, to));
-        accounts.stream()
+        List<Account> listToUpdate = accounts.stream()
                 .filter(e -> accountToUpdate.stream().map(Account::getId).anyMatch(id -> id.equals(e.getId())))
                 .collect(Collectors.toList());
+
 
         return to;
     }

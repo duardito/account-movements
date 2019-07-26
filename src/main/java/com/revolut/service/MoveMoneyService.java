@@ -7,5 +7,5 @@ import java.math.BigDecimal;
 
 public interface MoveMoneyService {
 
-     MoveResponse moveMoney(Account from, Account to, BigDecimal amount);
+     MoveResponse moveMoney(String from, String to, BigDecimal amount);
 }

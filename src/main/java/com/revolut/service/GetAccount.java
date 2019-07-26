@@ -14,10 +14,13 @@ public class GetAccount implements GetAccountService {
     }
 
     @Override
-    public AccountResponse get(AccountFrom accountFrom) {
+    public Account get(AccountFrom accountFrom) {
+        return accountRepository.getBy(accountFrom.getId());
+    }
 
-        final Account account = accountRepository.getBy(accountFrom.getId());
-        return new AccountResponse(account.getId(), account.getAmount());
+    @Override
+    public void update(Account from,Account to){
+        accountRepository.update(from,to);
     }
 
 }

@@ -1,12 +1,10 @@
-package com.revolut;
+package com.revolut.api;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import java.io.IOException;
-
 public class OperationsHandler implements HttpHandler {
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public void handle(HttpExchange httpExchange)  {
 
     }
 }

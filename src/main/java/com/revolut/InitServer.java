@@ -1,5 +1,6 @@
 package com.revolut;
 
+import com.revolut.api.OperationsHandler;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;

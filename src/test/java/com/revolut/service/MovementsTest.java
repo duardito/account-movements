@@ -14,22 +14,26 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MovementsTest {
 
     private MoveMoneyService moveMoneyService;
 
+    @Mock
     private AccountRepository accountRepository;
 
-    @Rule
-    public ExpectedException expectedEx = ExpectedException.none();
 
     @Before
     public void setup() {
-        accountRepository = new AccountRepositoryInMemory();
+        MockitoAnnotations.initMocks(this);
         moveMoneyService = new MoveMoney(new GetAccount(accountRepository), new GetAccountToTransfer(accountRepository));
     }
 
@@ -39,6 +43,9 @@ public class MovementsTest {
         String idFrom = "dfgthrhh-968-dyh53";
         String idTo = "asdfr1uj-456-ggf33";
 
+        Account accountMockedFrom = new Account(idFrom, new BigDecimal(-200));
+
+        Mockito.when(accountRepository.getBy(idFrom)).thenReturn(accountMockedFrom);
         Account account = accountRepository.getBy(idFrom);
         Assert.assertEquals(new BigDecimal(-200), account.getAmount());
 
@@ -48,8 +55,14 @@ public class MovementsTest {
     @Test
     public void should_move_money_between_accounts() {
 
-        String idFrom = "asdfr124-323-ddf33";
-        String idTo = "asdfr1uj-456-ggf33";
+        String idFrom = "547h56y5hgt";
+        String idTo   = "etryertyrte";
+
+        Account accountMockedFrom = new Account(idFrom, new BigDecimal(1000.5));
+        Account accountMockedTo = new Account(idTo, new BigDecimal(1000.5));
+
+        Mockito.when(accountRepository.getBy(idFrom)).thenReturn(accountMockedFrom);
+        Mockito.when(accountRepository.getBy(idTo)).thenReturn(accountMockedTo);
 
         Account account = accountRepository.getBy(idFrom);
         Assert.assertEquals(new BigDecimal(1000.5), account.getAmount());
@@ -68,6 +81,12 @@ public class MovementsTest {
 
         String idFrom = "asdfr124-323-ddf33";
         String idTo = "asdfr1uj-456-ggf33";
+
+        Account accountMockedFrom = new Account(idFrom, new BigDecimal(1000.5));
+        Account accountMockedTo = new Account(idTo, new BigDecimal(1000.5));
+
+        Mockito.when(accountRepository.getBy(idFrom)).thenReturn(accountMockedFrom);
+        Mockito.when(accountRepository.getBy(idTo)).thenReturn(accountMockedTo);
 
         moveMoneyService.moveMoney(idFrom, idTo, new BigDecimal(5200));
     }

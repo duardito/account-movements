@@ -20,6 +20,7 @@ import java.util.Map;
 
 public class BaseTest {
 
+    protected static final String OPERATION_MOVE = "http://localhost:15000/operation/move";
 
     protected JsonObject getJsonResponsePut(final String url, final Map<String, Object> mapParams) throws Exception {
 

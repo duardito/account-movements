@@ -12,14 +12,11 @@ import java.util.stream.Collectors;
 
 public class AccountRepositoryInMemory implements AccountRepository {
 
-    private List<Account> accounts = new ArrayList<>(0);
-
+    private static List<Account> accounts = new ArrayList<>(0);
 
     public AccountRepositoryInMemory(){
         initValues();
     }
-
-
 
     @Override
     public List<Account> getAccounts() {

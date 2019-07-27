@@ -10,6 +10,9 @@ import com.revolut.service.GetAccountService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.math.BigDecimal;
 
@@ -17,9 +20,13 @@ public class AccountsTest {
 
     private GetAccountService getAccountService;
 
+    @Mock
+    private AccountRepository accountRepository;
+
     @Before
     public void setup() {
-        getAccountService = new GetAccount(new AccountRepositoryInMemory());
+        MockitoAnnotations.initMocks(this);
+        getAccountService = new GetAccount(accountRepository);
     }
 
     @Test
@@ -28,6 +35,9 @@ public class AccountsTest {
         String id = "asdfr124-323-ddf33";
 
         AccountFrom account = new AccountFrom(id);
+        Account accountMockedFrom = new Account(id, new BigDecimal(1000.50));
+        Mockito.when(accountRepository.getBy(account.getId())).thenReturn(accountMockedFrom);
+
         Account accountResponse = getAccountService.get(account);
         Assert.assertEquals(id, accountResponse.getId());
         Assert.assertEquals(new BigDecimal(1000.50), accountResponse.getAmount());
@@ -36,8 +46,11 @@ public class AccountsTest {
     @Test(expected = ObjectNotFoundException.class)
     public void should_not_get_an_account_not_exists() {
 
-        String id = "asdfr124-aaa-ddf33";
+        String id = "not-exists";
+
         AccountFrom account = new AccountFrom(id);
+        Mockito.when(accountRepository.getBy(account.getId())).thenThrow(ObjectNotFoundException.class);
+
         getAccountService.get(account);
     }
 }

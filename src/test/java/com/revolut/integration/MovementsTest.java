@@ -32,7 +32,7 @@ public class MovementsTest extends BaseTest {
         map.put("idFrom", "");
         map.put("idTo", idTo);
         map.put("amount", "ada");
-        getJsonResponsePut("http://localhost:15000/operation/move", map);
+        getJsonResponsePut(OPERATION_MOVE, map);
     }
 
     @Test(expected = BadRequestException.class)
@@ -44,7 +44,7 @@ public class MovementsTest extends BaseTest {
         map.put("idFrom", "");
         map.put("idTo", idTo);
         map.put("amount", "");
-        getJsonResponsePut("http://localhost:15000/operation/move", map);
+        getJsonResponsePut(OPERATION_MOVE, map);
     }
 
     @Test(expected = BadRequestException.class)
@@ -56,7 +56,7 @@ public class MovementsTest extends BaseTest {
         map.put("idFrom", "");
         map.put("idTo", idTo);
         map.put("amount", new BigDecimal(120));
-        getJsonResponsePut("http://localhost:15000/operation/move", map);
+        getJsonResponsePut(OPERATION_MOVE, map);
     }
 
     @Test(expected = BadRequestException.class)
@@ -67,20 +67,25 @@ public class MovementsTest extends BaseTest {
         Map<String, Object> map = new HashMap<>();
         map.put("idTo", idTo);
         map.put("amount", new BigDecimal(120));
-        getJsonResponsePut("http://localhost:15000/operation/move", map);
+        getJsonResponsePut(OPERATION_MOVE, map);
     }
 
     @Test
-    public void should_move_money_between_accounts() throws Exception {
+    public void should_do_two_operations_between_same_accounts() throws Exception {
 
         final String idFrom = "asdfr1uj-456-ggf33";
         final String idTo = "asdfr124-323-ddf33";
 
+        firstOperation(idFrom, idTo);
+        secondOperation(idFrom, idTo);
+    }
+
+    private void firstOperation(String idFrom, String idTo) throws Exception {
         Map<String, Object> map = new HashMap<>();
         map.put("idFrom", idFrom);
         map.put("idTo", idTo);
         map.put("amount", new BigDecimal(120));
-        JsonObject response = getJsonResponsePut("http://localhost:15000/operation/move", map);
+        JsonObject response = getJsonResponsePut(OPERATION_MOVE, map);
 
         JsonElement idFromResponse = response.get("idFrom");
         JsonElement idToResponse = response.get("idTo");
@@ -93,4 +98,21 @@ public class MovementsTest extends BaseTest {
         Assert.assertEquals(new BigDecimal(amountToMove.getAsString()), new BigDecimal(120));
     }
 
+    private void secondOperation(String idFrom, String idTo) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        map.put("idFrom", idFrom);
+        map.put("idTo", idTo);
+        map.put("amount", new BigDecimal(1200));
+        JsonObject response = getJsonResponsePut(OPERATION_MOVE, map);
+
+        JsonElement idFromResponse = response.get("idFrom");
+        JsonElement idToResponse = response.get("idTo");
+        JsonElement amountRemaining = response.get("amountRemaining");
+        JsonElement amountToMove = response.get("amountToMove");
+
+        Assert.assertEquals(idFromResponse.getAsString(), idFrom);
+        Assert.assertEquals(idToResponse.getAsString(), idTo);
+        Assert.assertEquals(new BigDecimal(amountRemaining.getAsString()), new BigDecimal(9180));
+        Assert.assertEquals(new BigDecimal(amountToMove.getAsString()), new BigDecimal(1200));
+    }
 }

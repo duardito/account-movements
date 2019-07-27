@@ -9,7 +9,9 @@ public class Validate {
 
     public static void amountFromAccount(Account from, BigDecimal amount) {
         zeroAmount(amount);
-        negativeAmount(from, amount);
+        negativeCurrentAmount(from);
+        amountToTransferBiggerThanCurrent(from, amount);
+
     }
 
     private static void zeroAmount(BigDecimal amount) {
@@ -18,9 +20,15 @@ public class Validate {
         }
     }
 
-    private static void negativeAmount(Account from, BigDecimal amount) {
+    private static void amountToTransferBiggerThanCurrent(Account from, BigDecimal amount) {
         if (from.getAmount().compareTo(amount) < 0) {
-            throw new InvalidAmountException(String.format("%s : %g","Amount to transfer bigger than current", amount));
+            throw new InvalidAmountException(String.format("%s : %g", "Amount to transfer bigger than current", amount));
+        }
+    }
+
+    private static void negativeCurrentAmount(Account from) {
+        if (from.getAmount().compareTo(new BigDecimal(0)) < 0) {
+            throw new InvalidAmountException(String.format("%s : %g", "Current account with negative amount", from.getAmount()));
         }
     }
 

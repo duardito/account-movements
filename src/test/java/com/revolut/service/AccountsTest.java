@@ -1,5 +1,7 @@
-package com.revolut;
+package com.revolut.service;
 
+import com.revolut.Account;
+import com.revolut.AccountFrom;
 import com.revolut.exceptions.ObjectNotFoundException;
 import com.revolut.repository.AccountRepository;
 import com.revolut.repository.AccountRepositoryInMemory;

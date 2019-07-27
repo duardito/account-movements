@@ -10,20 +10,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AccountRepositoryInMemory implements AccountRepository{
+public class AccountRepositoryInMemory implements AccountRepository {
 
-    private static List<Account> accounts = new ArrayList<>(0);
+    private List<Account> accounts = new ArrayList<>(0);
 
-    static {
-        accounts.add(new Account("asdfr124-323-ddf33", new BigDecimal(1000.50)));
-        accounts.add(new Account("asdfr1uj-456-ggf33", new BigDecimal(10500)));
 
-        accounts.add(new Account("asdfrooo-874-ddf33", new BigDecimal(31000.45)));
-        accounts.add(new Account("asdfrkkk-908-dtf53", new BigDecimal(15500)));
-
-        accounts.add(new Account("gfdhgthg-928-dki53", new BigDecimal(0)));
-        accounts.add(new Account("dfgthrhh-968-dyh53", new BigDecimal(-200)));
+    public AccountRepositoryInMemory(){
+        initValues();
     }
+
+
 
     @Override
     public List<Account> getAccounts() {
@@ -45,8 +41,20 @@ public class AccountRepositoryInMemory implements AccountRepository{
         List<Account> listToUpdate = accounts.stream()
                 .filter(e -> accountToUpdate.stream().map(Account::getId).anyMatch(id -> id.equals(e.getId())))
                 .collect(Collectors.toList());
-
+        accounts.removeAll(listToUpdate);
+        accounts.addAll(accountToUpdate);
 
         return to;
+    }
+
+    private void initValues() {
+        accounts.add(new Account("asdfr124-323-ddf33", new BigDecimal(1000.50)));
+        accounts.add(new Account("asdfr1uj-456-ggf33", new BigDecimal(10500)));
+
+        accounts.add(new Account("asdfrooo-874-ddf33", new BigDecimal(31000.45)));
+        accounts.add(new Account("asdfrkkk-908-dtf53", new BigDecimal(15500)));
+
+        accounts.add(new Account("gfdhgthg-928-dki53", new BigDecimal(0)));
+        accounts.add(new Account("dfgthrhh-968-dyh53", new BigDecimal(-200)));
     }
 }

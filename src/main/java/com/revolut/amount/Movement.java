@@ -13,7 +13,7 @@ public class Movement {
     private Account decreasedFrom;
     private Account updatedTo;
 
-    public static Movement build(Account from, Account to) {
+    public static Movement build(Account from, Account to)  {
         return new Movement(from, to);
     }
 

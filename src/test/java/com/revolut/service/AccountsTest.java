@@ -1,11 +1,9 @@
 package com.revolut.service;
 
-import com.revolut.Account;
-import com.revolut.AccountFrom;
+import com.revolut.amount.Account;
+import com.revolut.amount.AccountFrom;
 import com.revolut.exceptions.ObjectNotFoundException;
 import com.revolut.repository.AccountRepository;
-import com.revolut.service.GetAccount;
-import com.revolut.service.GetAccountService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

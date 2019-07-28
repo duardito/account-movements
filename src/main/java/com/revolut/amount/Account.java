@@ -1,4 +1,4 @@
-package com.revolut;
+package com.revolut.amount;
 
 import java.math.BigDecimal;
 

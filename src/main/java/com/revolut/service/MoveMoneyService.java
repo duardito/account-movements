@@ -1,6 +1,6 @@
 package com.revolut.service;
 
-import com.revolut.MoveResponse;
+import com.revolut.api.MoveResponse;
 
 import java.math.BigDecimal;
 

@@ -1,7 +1,7 @@
 package com.revolut.repository;
 
 
-import com.revolut.Account;
+import com.revolut.amount.Account;
 import com.revolut.exceptions.ObjectNotFoundException;
 
 import java.math.BigDecimal;

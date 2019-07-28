@@ -1,6 +1,5 @@
 package com.revolut.api;
 
-import com.revolut.MoveResponse;
 import com.revolut.infraestructure.BadRequestException;
 import com.revolut.repository.AccountRepository;
 import com.revolut.repository.AccountRepositoryInMemory;

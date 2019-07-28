@@ -1,7 +1,7 @@
 package com.revolut.service;
 
-import com.revolut.Account;
-import com.revolut.AccountFrom;
+import com.revolut.amount.Account;
+import com.revolut.amount.AccountFrom;
 
 public interface GetAccountService {
 

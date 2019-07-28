@@ -1,13 +1,9 @@
 package com.revolut.service;
 
-import com.revolut.Account;
-import com.revolut.MoveResponse;
+import com.revolut.amount.Account;
+import com.revolut.api.MoveResponse;
 import com.revolut.exceptions.InvalidAmountException;
 import com.revolut.repository.AccountRepository;
-import com.revolut.service.GetAccount;
-import com.revolut.service.GetAccountToTransfer;
-import com.revolut.service.MoveMoney;
-import com.revolut.service.MoveMoneyService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

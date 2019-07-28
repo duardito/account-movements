@@ -1,8 +1,8 @@
 package com.revolut.service;
 
-import com.revolut.Account;
-import com.revolut.AccountFrom;
-import com.revolut.MoveResponse;
+import com.revolut.amount.Account;
+import com.revolut.amount.AccountFrom;
+import com.revolut.api.MoveResponse;
 import com.revolut.amount.Movement;
 
 import java.math.BigDecimal;

@@ -48,5 +48,8 @@ public class AccountRepositoryInMemory implements AccountRepository {
 
         accounts.add(new Account("gfdhgthg-928-dki53", new BigDecimal(0)));
         accounts.add(new Account("dfgthrhh-968-dyh53", new BigDecimal(-200)));
+
+        accounts.add(new Account("123-928-dki53", new BigDecimal(1200)));
+        accounts.add(new Account("456-968-dyh53", new BigDecimal(-50)));
     }
 }

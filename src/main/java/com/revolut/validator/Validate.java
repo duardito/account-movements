@@ -1,6 +1,6 @@
 package com.revolut.validator;
 
-import com.revolut.amount.Account;
+import com.revolut.account.Account;
 import com.revolut.exceptions.InvalidAmountException;
 
 import java.math.BigDecimal;

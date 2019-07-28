@@ -1,6 +1,6 @@
 package com.revolut.service;
 
-import com.revolut.amount.Account;
+import com.revolut.account.Account;
 import com.revolut.api.MoveResponse;
 import com.revolut.exceptions.InvalidAmountException;
 import com.revolut.repository.AccountRepository;

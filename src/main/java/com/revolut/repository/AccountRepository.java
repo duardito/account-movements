@@ -1,6 +1,6 @@
 package com.revolut.repository;
 
-import com.revolut.amount.Account;
+import com.revolut.account.Account;
 
 public interface AccountRepository {
 

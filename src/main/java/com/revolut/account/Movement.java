@@ -1,4 +1,4 @@
-package com.revolut.amount;
+package com.revolut.account;
 
 import com.revolut.validator.Validate;
 

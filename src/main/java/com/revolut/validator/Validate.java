@@ -11,14 +11,14 @@ public class Validate {
 
     private final static Logger LOGGER = Logger.getLogger(Validate.class.getName());
 
-    public static void amountFromAccount(Account from, BigDecimal amount) {
-        zeroAmount(amount);
-        negativeAmount(amount);
-        negativeCurrentAmount(from);
+    public static void amountAccount(Account from, BigDecimal amount) {
+        zero(amount);
+        negative(amount);
+        negativeAmount(from);
         amountToTransferBiggerThanCurrent(from, amount);
     }
 
-    private static void zeroAmount(BigDecimal amount) {
+    private static void zero(BigDecimal amount) {
         if (amount.equals(new BigDecimal(0))) {
             String invalid = "Invalid zero amount";
             LOGGER.log(Level.SEVERE, invalid);
@@ -26,15 +26,15 @@ public class Validate {
         }
     }
 
-    private static void amountToTransferBiggerThanCurrent(Account from, BigDecimal amount) {
-        if (from.getAmount().compareTo(amount) < 0) {
+    private static void amountToTransferBiggerThanCurrent(Account account, BigDecimal amount) {
+        if (account.getAmount().compareTo(amount) < 0) {
             String invalid = String.format("%s : %g", "Amount to transfer bigger than current", amount);
             LOGGER.log(Level.SEVERE, invalid);
             throw new InvalidAmountException(invalid);
         }
     }
 
-    private static void negativeCurrentAmount(Account from) {
+    private static void negativeAmount(Account from) {
         if (from.getAmount().compareTo(new BigDecimal(0)) < 0) {
             String invalid = String.format("%s : %g", "Current account with negative amount", from.getAmount());
             LOGGER.log(Level.SEVERE, invalid);
@@ -42,7 +42,7 @@ public class Validate {
         }
     }
 
-    private static void negativeAmount(BigDecimal amount) {
+    private static void negative(BigDecimal amount) {
         if (amount.compareTo(new BigDecimal(0)) < 0) {
             String invalid = String.format("%s", "Negative amount", amount);
             LOGGER.log(Level.SEVERE, invalid);

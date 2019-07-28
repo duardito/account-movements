@@ -17,7 +17,7 @@ public class Movement {
     }
 
     public Movement money(BigDecimal amount) {
-        Validate.amountFromAccount(from, amount);
+        Validate.amountAccount(from, amount);
         updatedTo = new Account(to.getId(), to.getAmount().add(amount));
         decreasedFrom = new Account(from.getId(), from.getAmount().subtract(amount));
         return this;

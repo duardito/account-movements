@@ -4,31 +4,49 @@ import com.revolut.amount.Account;
 import com.revolut.exceptions.InvalidAmountException;
 
 import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Validate {
 
+    private final static Logger LOGGER = Logger.getLogger(Validate.class.getName());
+
     public static void amountFromAccount(Account from, BigDecimal amount) {
         zeroAmount(amount);
+        negativeAmount(amount);
         negativeCurrentAmount(from);
         amountToTransferBiggerThanCurrent(from, amount);
-
     }
 
     private static void zeroAmount(BigDecimal amount) {
         if (amount.equals(new BigDecimal(0))) {
-            throw new InvalidAmountException(String.format("Invalid zero amount %b", amount));
+            String invalid = "Invalid zero amount";
+            LOGGER.log(Level.SEVERE, invalid);
+            throw new InvalidAmountException(invalid);
         }
     }
 
     private static void amountToTransferBiggerThanCurrent(Account from, BigDecimal amount) {
         if (from.getAmount().compareTo(amount) < 0) {
-            throw new InvalidAmountException(String.format("%s : %g", "Amount to transfer bigger than current", amount));
+            String invalid = String.format("%s : %g", "Amount to transfer bigger than current", amount);
+            LOGGER.log(Level.SEVERE, invalid);
+            throw new InvalidAmountException(invalid);
         }
     }
 
     private static void negativeCurrentAmount(Account from) {
         if (from.getAmount().compareTo(new BigDecimal(0)) < 0) {
-            throw new InvalidAmountException(String.format("%s : %g", "Current account with negative amount", from.getAmount()));
+            String invalid = String.format("%s : %g", "Current account with negative amount", from.getAmount());
+            LOGGER.log(Level.SEVERE, invalid);
+            throw new InvalidAmountException(invalid);
+        }
+    }
+
+    private static void negativeAmount(BigDecimal amount) {
+        if (amount.compareTo(new BigDecimal(0)) < 0) {
+            String invalid = String.format("%s", "Negative amount", amount);
+            LOGGER.log(Level.SEVERE, invalid);
+            throw new InvalidAmountException(invalid);
         }
     }
 

@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "cb159542-a78b-4fc9-98b4-fd0aa0850303",
+		"name": "accounts-movements",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:15000/operation/move ",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "idFrom",
+							"value": "asdfr124-323-ddf33",
+							"type": "text"
+						},
+						{
+							"key": "idTo",
+							"value": "asdfr1uj-456-ggf33",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "100",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:15000/operation/move",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "15000",
+					"path": [
+						"operation",
+						"move"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

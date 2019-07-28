@@ -8,4 +8,4 @@ everything is ok, and you can test it with postman file included.
 
 There are 3 tests types, integration, service and repository.
 
-I  use libraries only for testing and json serialization, I have used basic  com.sun.net.httpserver.HttpServer just for this technical test.
+I  use libraries only for testing and json serialization, I have used basic  com.sun.net.httpserver.HttpServer just for this technical test with all its limitations.

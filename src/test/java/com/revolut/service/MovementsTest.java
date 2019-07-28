@@ -4,23 +4,18 @@ import com.revolut.Account;
 import com.revolut.MoveResponse;
 import com.revolut.exceptions.InvalidAmountException;
 import com.revolut.repository.AccountRepository;
-import com.revolut.repository.AccountRepositoryInMemory;
 import com.revolut.service.GetAccount;
 import com.revolut.service.GetAccountToTransfer;
 import com.revolut.service.MoveMoney;
 import com.revolut.service.MoveMoneyService;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MovementsTest {

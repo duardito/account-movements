@@ -4,7 +4,6 @@ import com.revolut.Account;
 import com.revolut.AccountFrom;
 import com.revolut.exceptions.ObjectNotFoundException;
 import com.revolut.repository.AccountRepository;
-import com.revolut.repository.AccountRepositoryInMemory;
 import com.revolut.service.GetAccount;
 import com.revolut.service.GetAccountService;
 import org.junit.Assert;

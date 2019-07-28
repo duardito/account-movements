@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 public class RequestMovements {
 
-    private String idFrom;
-    private String idTo;
-    private BigDecimal amount;
+    private final String idFrom;
+    private final String idTo;
+    private final BigDecimal amount;
 
     public RequestMovements(String idFrom, String idTo, BigDecimal amount) {
         this.idFrom = idFrom;

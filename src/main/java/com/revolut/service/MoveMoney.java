@@ -20,8 +20,8 @@ public class MoveMoney implements MoveMoneyService {
 
     @Override
     public MoveResponse moveMoney(String from, String to, BigDecimal quantity) {
-        Account accountFrom = getAccountService.get(new AccountFrom(from));
-        Account accountTo = getAccountToTransferService.get(new AccountFrom(to));
+        final Account accountFrom = getAccountService.get(new AccountFrom(from));
+        final Account accountTo = getAccountToTransferService.get(new AccountFrom(to));
         final Movement movement = Movement.build(accountFrom, accountTo).money(quantity);
         getAccountService.update(movement.getDecreasedFrom(), movement.getUpdatedTo());
 

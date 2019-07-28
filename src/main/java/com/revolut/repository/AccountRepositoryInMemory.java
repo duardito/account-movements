@@ -12,15 +12,10 @@ import java.util.stream.Collectors;
 
 public class AccountRepositoryInMemory implements AccountRepository {
 
-    private static List<Account> accounts = new ArrayList<>(0);
+    private static final List<Account> accounts = new ArrayList<>(0);
 
     public AccountRepositoryInMemory(){
         initValues();
-    }
-
-    @Override
-    public List<Account> getAccounts() {
-        return accounts;
     }
 
     @Override
@@ -28,27 +23,27 @@ public class AccountRepositoryInMemory implements AccountRepository {
         return accounts.stream().
                 filter(account -> account.getId().equals(id)).
                 findFirst().
-                orElseThrow(() -> new ObjectNotFoundException(String.format("Acount {} does not exist", id)));
+                orElseThrow(() -> new ObjectNotFoundException(String.format("Account {} does not exist", id)));
     }
 
     @Override
-    public Account update(Account from, Account to) {
+    public void update(Account from, Account to) {
 
-        final List<Account> accountToUpdate = new ArrayList<>(Arrays.asList(from, to));
+        final List<Account> accountsToUpdate = new ArrayList<>(Arrays.asList(from, to));
         List<Account> listToUpdate = accounts.stream()
-                .filter(e -> accountToUpdate.stream().map(Account::getId).anyMatch(id -> id.equals(e.getId())))
+                .filter(e -> accountsToUpdate.stream().map(Account::getId).anyMatch(id -> id.equals(e.getId())))
                 .collect(Collectors.toList());
-        accounts.removeAll(listToUpdate);
-        accounts.addAll(accountToUpdate);
 
-        return to;
+        //simulate update values
+        accounts.removeAll(listToUpdate);
+        accounts.addAll(accountsToUpdate);
     }
 
     private void initValues() {
         accounts.add(new Account("asdfr124-323-ddf33", new BigDecimal(1000.50)));
         accounts.add(new Account("asdfr1uj-456-ggf33", new BigDecimal(10500)));
 
-        accounts.add(new Account("asdfrooo-874-ddf33", new BigDecimal(31000.45)));
+        accounts.add(new Account("asdfrooo-874-ddf33", new BigDecimal(31000.50)));
         accounts.add(new Account("asdfrkkk-908-dtf53", new BigDecimal(15500)));
 
         accounts.add(new Account("gfdhgthg-928-dki53", new BigDecimal(0)));

@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 
 public class MoveResponse {
 
-    private String idFrom;
-    private String idTo;
-    private BigDecimal amountRemaining;
-    private BigDecimal amountToMove;
+    private final String idFrom;
+    private final String idTo;
+    private final BigDecimal amountRemaining;
+    private final BigDecimal amountToMove;
 
     public MoveResponse(String idFrom, String idTo, BigDecimal amountRemaining, BigDecimal amountToMove) {
         this.idFrom = idFrom;

@@ -2,7 +2,7 @@ package com.revolut;
 
 public class AccountFrom {
 
-    private String id;
+    private final String id;
 
     public AccountFrom(String id) {
         this.id = id;

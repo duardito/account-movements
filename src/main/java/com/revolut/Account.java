@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class Account {
 
-    private String id;
-    private BigDecimal  amount;
+    private final String id;
+    private final BigDecimal  amount;
 
     public Account(String id, BigDecimal  amount) {
         this.amount = amount;

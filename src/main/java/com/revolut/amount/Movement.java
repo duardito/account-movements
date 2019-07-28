@@ -7,8 +7,8 @@ import java.math.BigDecimal;
 
 public class Movement {
 
-    private Account from;
-    private Account to;
+    private final Account from;
+    private final Account to;
 
     private Account decreasedFrom;
     private Account updatedTo;

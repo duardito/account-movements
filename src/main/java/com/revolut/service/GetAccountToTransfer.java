@@ -5,7 +5,7 @@ import com.revolut.account.AccountFrom;
 import com.revolut.repository.AccountRepository;
 
 /**
- * class to simulate an external service, it can be used to transfer money to an external account or account from same bank
+ * class to simulate an external service, it can be used to transfer transfer to an external account or account from same bank
  * using same repository accounts just for simulate data, we should replace by external service or call to same bank
  */
 public class GetAccountToTransfer implements GetAccountToTransferService {

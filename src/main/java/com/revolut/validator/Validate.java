@@ -44,7 +44,7 @@ public class Validate {
 
     private static void negative(BigDecimal amount) {
         if (amount.compareTo(new BigDecimal(0)) < 0) {
-            String invalid = String.format("%s", "Negative amount", amount);
+            String invalid = String.format("%s : %g", "Negative amount", amount);
             LOGGER.log(Level.SEVERE, invalid);
             throw new InvalidAmountException(invalid);
         }

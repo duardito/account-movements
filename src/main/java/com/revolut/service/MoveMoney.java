@@ -25,9 +25,9 @@ public class MoveMoney implements MoveMoneyService {
     public MoveResponse moveMoney(String from, String to, BigDecimal quantity) {
         final Account accountFrom = getAccountService.get(new AccountFrom(from));
         final Account accountTo = getAccountToTransferService.get(new AccountFrom(to));
-        final Movement movement = Movement.build(accountFrom, accountTo).money(quantity);
+        final Movement movement = new Movement().transfer(quantity, accountFrom, accountTo);
         getAccountService.update(movement.getDecreasedFrom(), movement.getUpdatedTo());
-        LOGGER.log(Level.INFO, String.format("Transfered %s done from %s to %s ",String.valueOf(quantity), accountFrom.getId(), accountTo.getId()) );
+        LOGGER.log(Level.INFO, String.format("Transferred %s done from %s to %s ", String.valueOf(quantity), accountFrom.getId(), accountTo.getId()));
         return new MoveResponse(movement.getDecreasedFrom().getId(), movement.getUpdatedTo().getId(), movement.getDecreasedFrom().getAmount(), quantity);
     }
 }
